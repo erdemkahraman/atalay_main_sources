@@ -1,0 +1,12 @@
+#include .....
+
+main
+{
+ResetDevice();
+GetPromData();
+
+
+while(1)
+{
+StartCalculation();
+}

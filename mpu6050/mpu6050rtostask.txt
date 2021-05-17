@@ -1,0 +1,28 @@
+void StartACC(void *argument)
+{
+  /* USER CODE BEGIN StartACC */
+
+
+
+		MPU6050_Init(&hi2c2);
+		mympuconfig.Accel_Full_Scale = AFS_SEL_4g;
+		mympuconfig.ClockSource = Internal_8MHz;
+		mympuconfig.CONFIG_DLPF=DLPF_184A_188G_Hz;
+		mympuconfig.Gyro_Full_Scale=FS_SEL_500;
+		mympuconfig.Sleep_Mode_Bit=0;
+		MPU6050_Config(&mympuconfig);
+
+
+  /* Infinite loop */
+  for(;;)
+  {
+
+	      MPU6050_Get_Accel_RawData(&myaccelraw);
+	  	  MPU6050_Get_Gyro_RawData(&mygyroraw);
+	  	  accelerationX = (int16_t)(myaccelraw.x * CONVERSIONG);
+	  	  accelerationY = (int16_t)(myaccelraw.y * CONVERSIONG);
+	  	  accelerationZ = (int16_t)(myaccelraw.z * CONVERSIONG);
+	  	  roll =((atan2(myaccelraw.y, myaccelraw.z)*180.0)/M_PI)*-1;
+	  	  pitch=((atan2(myaccelraw.x, myaccelraw.z)*180.0)/M_PI)*-1;
+
+	
